@@ -8,8 +8,10 @@
     "require-dev": {
         "phpunit/phpunit": "~4.6"
     },
-    "psr-4": {
-        "Duff\\": "src/"
+    "autoload": {
+        "psr-4": {
+            "Duff\\": "src/"
+        }
     },
     "authors": [
         {
