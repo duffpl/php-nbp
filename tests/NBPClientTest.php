@@ -46,6 +46,9 @@ class NBPClientTest extends PHPUnit_Framework_TestCase {
 
     public function testFetchingDirectoryFile()
     {
-        $this->guzzle->
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+        //$this->guzzle->
     }
 } 
