@@ -1,11 +1,15 @@
 {
     "name": "duff/php-nbp",
-    "description": "Client for NBP exchange rate API",
+    "description": "Simple client for NBP exchange rate API",
+    "keywords": ["exchange","rates","api","nbp"],
     "require": {
         "guzzlehttp/guzzle": "~5.2"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.6"
+    },
+    "psr-4": {
+        "Duff\\": "src/"
     },
     "authors": [
         {
