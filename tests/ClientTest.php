@@ -24,17 +24,15 @@ class ClientTest extends PHPUnit_Framework_TestCase {
 
     public function testFetchingDataForSpecifiedDate()
     {
-        $date = new DateTime('2015-01-04');
-        $this->downloader->fetchUrl('http://www.nbp.pl/kursy/xml/dir.txt')->shouldBeCalled();
-        $this->downloader->fetchUrl(\Prophecy\Argument::that(function($argument) {
-            return preg_match('#http://www.nbp.pl/kursy/xml/a\d{3}z150104.xml#', $argument);
-        }))->shouldBeCalled();
+        $listFixture = join("\n", ['a146z060728', 'c147z060731', 'a147z060731', 'h149z060802']);
+        $this->downloader->fetchUrl('http://www.nbp.pl/kursy/xml/dir.txt')->shouldBeCalled()->willReturn($listFixture);
+
+        $date = new DateTime('2006-07-28');
+        $this->downloader->fetchUrl('http://www.nbp.pl/kursy/xml/a146z060728.xml')->shouldBeCalled();
         $this->client->getRatesForDate($date);
 
-        $date = new DateTime('2015-03-07');
-        $this->downloader->fetchUrl(\Prophecy\Argument::that(function($argument) {
-            return preg_match('#http://www.nbp.pl/kursy/xml/a\d{3}z150307.xml#', $argument);
-        }))->shouldBeCalled();
+        $date = new DateTime('2006-07-31');
+        $this->downloader->fetchUrl('http://www.nbp.pl/kursy/xml/a147z060731.xml')->shouldBeCalled();
         $this->client->getRatesForDate($date);
     }
 

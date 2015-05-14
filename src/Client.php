@@ -27,20 +27,12 @@ class Client
 
     public function getRatesForDate(\DateTime $date, $tableType = self::TABLE_TYPE_AVERAGE)
     {
-        $this->fetchDirectoryList();
-        $filename = $this->createFilename($date, 100, $tableType);
+        $dates = $this->findDatesForTableType($this->fetchDirectoryList(), $tableType);
+        $tableNumber = $dates[$date->format('Y-m-d')];
+        $filename = $this->createFilename($date, $tableNumber, $tableType);
         $url = $this->endPointUrl . '/' . $filename;
         $this->downloader->fetchUrl($url);
         return ['usd' => 1.33, 'eur' => 500];
-    }
-
-    /**
-     * @param \DateTime $date
-     * @return bool
-     */
-    private function dateIsOnDirectoryList(\DateTime $date)
-    {
-       return true;
     }
 
     public function getListOfAvailableDatesForTableType($tableType)
