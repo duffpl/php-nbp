@@ -27,6 +27,7 @@ class Client
 
     public function getRatesForDate(\DateTime $date, $tableType = self::TABLE_TYPE_AVERAGE)
     {
+
         $dates = $this->findDatesForTableType($this->fetchDirectoryList(), $tableType);
         $tableNumber = $dates[$date->format('Y-m-d')];
         $filename = $this->createFilename($date, $tableNumber, $tableType);
@@ -45,6 +46,8 @@ class Client
     {
         return $this->downloader->fetchUrl($this->listUrl);
     }
+
+
 
     private function findDatesForTableType($list, $tableType)
     {
